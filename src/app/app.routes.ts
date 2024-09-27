@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { SubMenuLayoutComponent } from './pages/sub-menu-layout/sub-menu-layout.component';
 import { ProjectFormComponent } from './pages/project-form/project-form.component';
+import { ProjectsEmployessComponent } from './pages/projects-employess/projects-employess.component';
 
 export const routes: Routes = [
     {
@@ -41,6 +42,12 @@ export const routes: Routes = [
                 path:'project-list',
                 component: ProjectListComponent,
                 title: 'All projects'
+            },
+
+            {
+                path:'project-emp',
+                component: ProjectsEmployessComponent,
+                title: 'Projects Employee'
             }
         ]
     }

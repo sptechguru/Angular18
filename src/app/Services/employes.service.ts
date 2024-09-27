@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IApiResponse, IChildDept } from '../Model/interface/master';
 import { Employee } from '../Model/class/Employee';
+import { IApiResponse, IChildDept, IProject } from '../Model/iterface/master';
 
 @Injectable({
   providedIn: 'root'
@@ -53,12 +53,12 @@ export class EmployesService {
   }
 
 
-  getAllProjects() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetAllProjects`);
+  getAllProjects() :Observable<Employee[]> {
+    return this.http.get<Employee []>(`${this.apiBaseurlurl}GetAllProjects`);
   }
 
   getProjectById(prId: any) {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetProject ${prId}`);
+    return this.http.get<any>(`${this.apiBaseurlurl}GetProject/ ${prId}`);
   }
 
 
@@ -92,8 +92,8 @@ export class EmployesService {
   }
 
 
-  createProject(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}CreateProject`, obj);
+  createProject(obj: Employee) :Observable<IProject> {
+    return this.http.post<IProject>(`${this.apiBaseurlurl}CreateProject`, obj);
   }
 
 
@@ -113,8 +113,8 @@ export class EmployesService {
     return this.http.put<any>(`${this.apiBaseurlurl}UpdateProjectEmployee ${id}`, obj);
   }
 
-  updateProject(id: any, obj: any) {
-    return this.http.put<any>(`${this.apiBaseurlurl}UpdateProject ${id}`, obj);
+  updateProject(obj:IProject) :Observable<IProject> {
+    return this.http.put<IProject>(this.apiBaseurlurl + "UpdateProject/" +obj.projectId ,obj);
   }
 
 

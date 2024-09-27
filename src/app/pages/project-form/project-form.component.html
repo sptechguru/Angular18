@@ -1,1 +1,74 @@
-<p>project-form works!</p>
+<div class="container my-4">
+
+    <div class="tab-pane fade show active" id="projects" role="tabpanel">
+
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-12">
+                <h2>Add New Projects</h2>
+            </div>
+            <div class="col-md-6 col-lg-6 col-12 text-end">
+                <button class="btn btn-primary mt-3" routerLink="/project-list">Project List</button>
+            </div>
+        </div>
+
+        <!-- Project Form -->
+        <form class="mb-4" [formGroup]="projectForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="projectName" class="form-label">Project Name</label>
+                    <input type="text" class="form-control" formControlName="projectName"
+                        placeholder="Enter project name">
+                </div>
+                <div class="col-md-6">
+                    <label for="clientName" class="form-label">Client Name</label>
+                    <input type="text" class="form-control" formControlName="clientName"
+                        placeholder="Enter client name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" formControlName="startDate">
+                </div>
+                <div class="col-md-6">
+                    <label for="leadByEmpId" class="form-label">Lead By Employee ID</label>
+                    <select id="deptId" class="form-select" formControlName="leadByEmpId">
+                        <option selected>Select department</option>
+                        <!-- Department options -->
+                        @for(item of leadEmplolist$ | async; track $index){
+                        <option [value]="item.employeeId">{{item?.employeeName}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="contactPerson" class="form-label">Contact Person</label>
+                    <input type="text" class="form-control" formControlName="contactPerson"
+                        placeholder="Enter contact person name">
+                </div>
+                <div class="col-md-4">
+                    <label for="contactNoProject" class="form-label">Contact No</label>
+                    <input type="text" class="form-control" formControlName="contactNo"
+                        placeholder="Enter contact number">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="contactNoProject" class="form-label">Email</label>
+                    <input type="text" class="form-control" formControlName="emailId"
+                        placeholder="Enter contact Your email">
+                </div>
+            </div>
+            @if( this.projectId == 0){
+            <button (click)="createProject()" type="submit" class="btn btn-primary mt-3">Save</button>
+
+            }
+            @else {
+            <button (click)="updateProject()" type="submit" class="btn btn-warning mt-3">Update</button>
+            }
+
+
+
+        </form>
+    </div>
+</div>

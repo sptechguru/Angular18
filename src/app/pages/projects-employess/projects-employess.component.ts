@@ -1,17 +1,17 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { EmployesService } from '../../Services/employes.service';
-import { FormsModule } from '@angular/forms';
-import { Employee } from '../../Model/class/Employee';
+import { Component, inject, signal } from '@angular/core';
 import { IApiResponse, IChildDept } from '../../Model/iterface/master';
+import { EmployesService } from '../../Services/employes.service';
+import { Employee } from '../../Model/class/Employee';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-employee',
+  selector: 'app-projects-employess',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './employee.component.html',
-  styleUrl: './employee.component.css'
+  templateUrl: './projects-employess.component.html',
+  styleUrl: './projects-employess.component.css'
 })
-export class EmployeeComponent implements OnInit {
+export class ProjectsEmployessComponent {
 
   empList: any = signal<any>([]);
   parentEmpList: any = signal<any>([]);

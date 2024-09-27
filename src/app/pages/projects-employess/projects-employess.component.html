@@ -1,0 +1,134 @@
+<div class="container-fluid my-4">
+    <!-- Employees Tab -->
+    <div class="tab-pane fade show active" id="employees" role="tabpanel">
+        <h2>Projects Employees</h2>
+    </div>
+    <!-- Employee Form -->
+    <div class="row">
+        <div class="col-md-10 col-lg-10 col-10">
+            <!-- Employee Table -->
+            <table class="table  table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Contact No</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Role</th>
+                        <th>Gender</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <!-- Data rows go here -->
+
+                    @for(emp of empList(); track $index){
+                    <tr>
+                        <td>{{$index +1}}</td>
+                        <td>{{emp?.employeeName}}</td>
+                        <td>{{emp?.contactNo}}</td>
+                        <td>{{emp?.emailId}}</td>
+                        <td>{{emp?.deptId}}</td>
+                        <td>{{emp?.role}}</td>
+                        <td>{{emp?.gender}}</td>
+                        <td>
+                            <button class="btn btn-success" (click)="onEdit(emp)">Edit</button>
+                            <button class="btn btn-danger mx-2" (click)="onDelete(emp.employeeId)">Delete</button>
+                        </td>
+
+                    </tr>
+                    }
+                    @empty {
+                    <div class="text-center">
+                        <b class="text-center text-danger font-weight-bold"> Employees is Not Found.</b>
+                    </div>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-12">
+            <form class="mb-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="employeeName" class="form-label">Employee Name</label>
+                        <input type="text" class="form-control" [(ngModel)]="employeeObj.employeeName" name="name"
+                            id="employeeName" placeholder="Enter employee name">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="contactNo" class="form-label">Contact No</label>
+                        <input type="text" class="form-control" [(ngModel)]="employeeObj.contactNo" name="contactNo"
+                            id="contactNo" placeholder="Enter contact number">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="emailId" class="form-label">Email</label>
+                        <input type="email" class="form-control" [(ngModel)]="employeeObj.emailId" name="emailId"
+                            id="emailId" placeholder="Enter email">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="deptId" class="form-label">Parent Department</label>
+                        <select id="deptId" class="form-select" [(ngModel)]="parenDeptId"
+                            (change)="onParentDeptIdChange()">
+                            <option selected>Select department</option>
+                            <!-- Department options -->
+                            @for(item of parentEmpList(); track $index){
+                            <option [value]="item.departmentId">{{item?.departmentName}}</option>
+
+                            }
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="deptId" class="form-label">Child Department</label>
+                        <select id="deptId" class="form-select">
+                            <option selected>Select department</option>
+                            @for(item of childDeptEmpList(); track $index){
+                            <option [value]="item">{{item?.departmentName}}</option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" [(ngModel)]="employeeObj.password" name="password"
+                            id="password" placeholder="Enter password">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="role" class="form-label">Role</label>
+                        <input type="text" class="form-control" [(ngModel)]="employeeObj.role" name="role" id="role"
+                            placeholder="Enter role">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select id="gender" class="form-select" [(ngModel)]="employeeObj.gender" name="gender">
+                            <option selected>Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                @if(this.employeeObj.employeeId == 0){
+                <button type="submit" class="btn btn-success mt-3" (click)="onSave()">Save Employee</button>
+                }
+                @else {
+                <button type="submit" class="btn btn-warning mt-3" (click)="onUpdate()">Update Employee</button>
+                }
+            </form>
+        </div>
+    </div>
+</div>
