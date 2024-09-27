@@ -6,7 +6,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-end">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" routerLink="/dashboard">Dashbord</a>
               </li>
@@ -22,6 +22,9 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" routerLink="/project-list">All Project List</a>
               </li>
+
+              <button class="btn btn-danger" (click)="logOut()" type="submit">LogOut</button>
+
          
               
               <!-- <li class="nav-item dropdown">

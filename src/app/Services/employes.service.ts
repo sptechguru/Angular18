@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IApiResponse, IChildDept } from '../Model/interface/master';
+import { Employee } from '../Model/class/Employee';
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +20,24 @@ export class EmployesService {
     return this.http.get<any>(`${this.apiBaseurlurl}GetDashboard`);
   }
 
-  getParentDepartMent() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetParentDepartment`);
+  getParentDepartMent() :Observable<IApiResponse> {
+    return this.http.get<IApiResponse>(`${this.apiBaseurlurl}GetParentDepartment`);
   }
 
+  getChildDepartmentByParentId(deptId:number):Observable<IChildDept> {
+    return this.http.get<IChildDept>(`${this.apiBaseurlurl}GetChildDepartmentByParentId?deptId=${deptId}`);
+  }
 
-  getAllChildDepartment() {
+  getAllEmployees():Observable<Employee[]> {
+    return this.http.get<Employee []>(`${this.apiBaseurlurl}GetAllEmployees`);
+  }
+
+  getAllChildDepartment()  {
     return this.http.get<any>(`${this.apiBaseurlurl}GetAllChildDepartment`);
   }
 
-  getChildDepartmentByParentId() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetChildDepartmentByParentId`);
-  }
 
 
-  getAllEmployees() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetAllEmployees`);
-  }
 
   getEmployeeById(emid: any) {
     return this.http.get<any>(`${this.apiBaseurlurl}GetAllEmployee${emid}`);
@@ -98,11 +102,11 @@ export class EmployesService {
   }
 
 
-  ////////////////////// All Put Methods here///////////////////////////// 
+  ////////////////////// All Put Update  Methods here///////////////////////////// 
 
 
-  updateEmployees(id: any, obj: any) {
-    return this.http.put<any>(`${this.apiBaseurlurl}UpdateEmployee ${id}`, obj);
+  updateEmployees(obj:Employee) :Observable <IApiResponse>{
+    return this.http.put<any>(`${this.apiBaseurlurl}UpdateEmployee/ ${obj.employeeId}`, obj);
   }
 
   updateProjectEmployee(id: any, obj: any) {
@@ -128,8 +132,8 @@ export class EmployesService {
   }
 
 
-  deleteEmployee(id: any) {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteEmployee=${id}`);
+  deleteEmployee(id: number) :Observable<IApiResponse> {
+    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteEmployee/${id}`);
   }
 
 
