@@ -1,0 +1,32 @@
+<div style="display: flex;">
+    <div style="display: inline-block;width: 20%;">
+        <div class="flex-shrink-0 p-3 bg-white vh-100">
+            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+              <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+              <span class="fs-5 fw-semibold">Expandabe Mennu </span>
+            </a>
+            <ul class="list-unstyled ps-0">
+              @for (item of menuList; track $index) {
+                <li class="mb-1">
+                  <button (click)="onExpand(item.title)" [className]="expandedMenu == item.title ? 'btn btn-toggle align-items-center rounded':'btn btn-toggle align-items-center rounded collapsed'" class="" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                    {{item.title}} 
+                   
+                  </button>
+                  <div  [className]="expandedMenu == item.title ? 'collapse show': 'collapse'" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      @for (child of item.children; track $index) {
+                        <li><a [routerLink]="[child.route]" routerLinkActive="router-link-active"  class="link-dark rounded">{{child.title}}</a></li>
+                      }
+                       
+                    </ul>
+                  </div>
+                </li>
+              }
+              
+            </ul>
+          </div>
+    </div>
+    <div style="display: inline-block;width: 80%;">
+        <router-outlet/>
+    </div>
+</div>
