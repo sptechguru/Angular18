@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../Model/class/Employee';
 import { IApiResponse, IChildDept, IProject, IProjectEmployee } from '../Model/interface/master';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,18 @@ export class EmployesService {
 
   readonly apiBaseurlurl: string = 'https://projectapi.gerasim.in/api/EmployeeManagement/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private toastr: ToastrService) { }
 
 
   ////////////////////// All get Methods here///////////////////////////// 
+
+   getSucces(msg:string){
+    return this.toastr.success(msg);
+   }
+
+   getError(msg:string){
+    return this.toastr.error(msg);
+   }
 
   getDashbord() {
     return this.http.get<any>(`${this.apiBaseurlurl}GetDashboard`);

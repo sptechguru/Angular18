@@ -50,10 +50,11 @@ export class ProjectsEmployessComponent {
   loadAllProjectsEmp() {
     this.empSrv.getAllProjectEmployees().subscribe((res: IProjectEmployee[]) => {
       this.projectEmpoyeeList.set(res)
-      console.log(res);
+      // console.log(res);
     },
       error => {
-        console.log(error)
+        // console.log(error)
+        this.empSrv.getError(error.message);
       })
   }
 
@@ -61,24 +62,30 @@ export class ProjectsEmployessComponent {
   onSave() {
     const formValue = this.projectempForm.value;
     this.empSrv.createProjectEmployee(formValue).subscribe((res: IProject) => {
-      alert("Employee Create to Project Succesufully");
+      // alert("Employee Create to Project Succesufully");
+      this.empSrv.getSucces('Employee Create to Project Succesufully')
       this.projectempForm.reset();
       this.loadAllProjectsEmp();
     },
       error => {
-        console.log(error)
+        // console.log(error)
+      this.empSrv.getError(error.message);
+
       })
   }
 
 
   onUpdate() {
     const formValue = this.projectempForm.value;
-    console.log("update form values", formValue)
+    // console.log("update form values", formValue)
     this.empSrv.updateProjectEmployee(formValue).subscribe((res) => {
-      alert("Employee Update to Project Succesufully");
+      // alert("Employee Update to Project Succesufully");
+      this.empSrv.getSucces('Employee Update to Project Succesufully')
       this.loadAllProjectsEmp();
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.empSrv.getError(error.message);
+
     })
   }
 
@@ -97,12 +104,15 @@ export class ProjectsEmployessComponent {
   }
 
   onDelete(id: number) {
-    console.log('Employee id ', id)
+    // console.log('Employee id ', id)
     const confirmed = confirm('Are You sure Want to Delete ??');
     if (confirmed) {
       this.empSrv.deleteProjectEmployee(id).subscribe((res: IApiResponse) => {
-        alert("Employee Delted Project  Succesufully");
+        // alert("Employee Delted Project  Succesufully");
+        this.empSrv.getError("Employee Delted Project  Succesufully")
         this.loadAllProjectsEmp();
+      }, error=>{
+       this.empSrv.getError(error.message);
       })
     }
   }

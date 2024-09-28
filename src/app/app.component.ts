@@ -9,7 +9,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angular_18_admin_panel_sidebar';
+  title = 'angular_18';
   constructor() {
   }
 }

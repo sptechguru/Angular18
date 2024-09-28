@@ -24,7 +24,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.loadEmployee();
     this.loadParentDept();
-    console.log(this.employeeObj)
+    // console.log(this.employeeObj)
   }
 
   addModeBox(){
@@ -34,15 +34,17 @@ export class EmployeeComponent implements OnInit {
 
   loadParentDept() {
     this.empSrv.getParentDepartMent().subscribe((res: IApiResponse) => {
-      console.log('parent dept', res.data);
+      // console.log('parent dept', res.data);
       this.parentEmpList.set(res.data);
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.empSrv.getError(error);
+
     })
   }
 
   onParentDeptIdChange() {
-    console.log(this.parenDeptId)
+    // console.log(this.parenDeptId)
     this.empSrv.getChildDepartmentByParentId(this.parenDeptId).subscribe((res:IChildDept)=>{
       console.log(res);
     })
@@ -52,39 +54,44 @@ export class EmployeeComponent implements OnInit {
   loadEmployee() {
     this.empSrv.getAllEmployees().subscribe((res: Employee[]) => {
       this.empList.set(res)
-      console.log(res);
+      // console.log(res);
     },
       error => {
-        console.log(error)
+        // console.log(error)
+        this.empSrv.getError(error);
       })
   }
 
 
   onSave() {
     this.empSrv.createEmployee(this.employeeObj).subscribe((res: IApiResponse) => {
-      alert("Employee Create Succesufully");
+      this.empSrv.getSucces('Employee Create Succesufully');
       this.loadEmployee();
       this.employeeObj = new Employee();
     },
       error => {
-        console.log(error)
+        // console.log(error)
+        this.empSrv.getError(error);
       })
   }
 
   onUpdate() {
     this.empSrv.updateEmployees(this.employeeObj).subscribe((res) => {
-      alert("Employee Update  Succesufully");
+      // alert("Employee Update  Succesufully");
+      this.empSrv.getSucces('Employee Update Succesufully');
       this.loadEmployee();
       this.employeeObj = new Employee();
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.empSrv.getError(error);
+
     })
   }
 
 
   onEdit(item: Employee) {
     this.employeeObj = item;
-    console.log('Edit Form  ', this.employeeObj)
+    // console.log('Edit Form  ', this.employeeObj)
     this.isempFormVisble.set(true);
   }
 
@@ -95,7 +102,8 @@ export class EmployeeComponent implements OnInit {
     const confirmed = confirm('Are You sure Want to Delete ??');
     if (confirmed) {
       this.empSrv.deleteEmployee(id).subscribe((res: IApiResponse) => {
-        alert("Employee Delted  Succesufully");
+        // alert("Employee Delted  Succesufully");
+        this.empSrv.getError('Employee Delted  Succesufully');
         this.loadEmployee();
       })
     }

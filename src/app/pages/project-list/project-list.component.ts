@@ -28,9 +28,10 @@ export class ProjectListComponent implements OnInit {
   lodProjectList() {
     this.emPSrv.getAllProjects().subscribe((res:any) => {
       this.empProjectList = res;
-      console.log(this.empProjectList)
+      // console.log(this.empProjectList)
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.emPSrv.getError(error.message);
     })
   }
 
@@ -45,8 +46,11 @@ export class ProjectListComponent implements OnInit {
     const confirmed = confirm('Are You sure Want to Delete ??');
     if (confirmed) {
       this.emPSrv.deleteProject(id).subscribe((res:any) => {
-        alert("Employee Delted  Succesufully");
+        // alert("Employee Delted  Succesufully");
+         this.emPSrv.getError("Employee Delted  Succesufully");
         this.lodProjectList();
+      },error=>{
+        this.emPSrv.getError(error.message);
       })
     }
   }

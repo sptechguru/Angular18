@@ -1,15 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EmployesService } from '../../Services/employes.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  constructor(private toastr: EmployesService) {}
 
   loginObj: any = {
     userName: '',
@@ -24,9 +27,10 @@ export class LoginComponent {
   onLogin() {
     if(this.loginObj.userName == this.userName && this.loginObj.password == this.pass) {
       localStorage.setItem('USER',JSON.stringify(this.loginObj))
+      this.toastr.getSucces('User Login Succefully ??');
       this.router.navigateByUrl('/dashboard')
     } else {
-      alert('Wrong Credentials')
+      this.toastr.getError('Wrong Credentials');
     }
   }
 

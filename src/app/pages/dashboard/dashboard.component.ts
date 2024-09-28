@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   getDashbord(){
     this.emp.getDashbord().subscribe((res)=>{
       this.dashbordsList = res;
-      console.log(this.dashbordsList);
+      // console.log(this.dashbordsList);
     }, error=>{
       console.log(error)
     })

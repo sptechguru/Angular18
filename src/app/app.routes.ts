@@ -4,48 +4,49 @@ import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
-import { SubMenuLayoutComponent } from './pages/sub-menu-layout/sub-menu-layout.component';
 import { ProjectFormComponent } from './pages/project-form/project-form.component';
 import { ProjectsEmployessComponent } from './pages/projects-employess/projects-employess.component';
+import { AuthGuard } from './Auth/auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo:'login',
+        redirectTo: 'login',
         pathMatch: 'full'
     },
     {
-        path:'login',
+        path: 'login',
         component: LoginComponent
-    }, 
+    },
     {
-        path:'',
-        component:LayoutComponent,
-        children:[
+        path: '',
+        component: LayoutComponent,
+        canActivate: [AuthGuard],
+        children: [
             {
-                path:'dashboard',
+                path: 'dashboard',
                 component: DashboardComponent,
                 title: 'Dashboard'
             },
             {
-                path:'employee',
+                path: 'employee',
                 component: EmployeeComponent,
                 title: 'Employee'
             },
 
             {
-                path:'add-project/:id',
+                path: 'add-project/:id',
                 component: ProjectFormComponent,
                 title: 'Project'
             },
             {
-                path:'project-list',
+                path: 'project-list',
                 component: ProjectListComponent,
                 title: 'All projects'
             },
 
             {
-                path:'project-emp',
+                path: 'project-emp',
                 component: ProjectsEmployessComponent,
                 title: 'Projects Employee'
             }

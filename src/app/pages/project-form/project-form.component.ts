@@ -29,7 +29,7 @@ export class ProjectFormComponent implements OnInit {
     this.leadEmplolist$ = this.empSrv.getAllEmployees();
     this.initForm();
     this.actveRoute.params.subscribe((res: any) => {
-      console.log('Parms', res.id)
+      // console.log('Parms', res.id)
       if (res.id != 0) {
         this.projectId = res.id;
         this.getProjectId(this.projectId)
@@ -56,23 +56,26 @@ export class ProjectFormComponent implements OnInit {
 
   getProjectId(id: number) {
     this.empSrv.getProjectById(id).subscribe((res: IProject) => {
-      console.log('project by id ', res);
+      // console.log('project by id ', res);
       this.initForm(res)
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.empSrv.getError(error.message);
     })
   }
 
 
   createProject() {
     const formValue = this.projectForm.value;
-    console.log(formValue)
+    // console.log(formValue)
     this.empSrv.createProject(formValue).subscribe((res: IProject) => {
-      alert('Project Created');
+      // alert('Project Created');
+      this.empSrv.getSucces('Project Created Succesufully');
       this.projectForm.reset();
       this.router.navigate(['project-list']);
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.empSrv.getError(error.message);
     })
 
   }
@@ -80,13 +83,15 @@ export class ProjectFormComponent implements OnInit {
 
   updateProject() {
     const formValue = this.projectForm.value;
-    console.log('update project',formValue)
+    // console.log('update project',formValue)
     this.empSrv.updateProject(formValue).subscribe((res: IProject) => {
-      alert('updated Project');
+      // alert('updated Project');
+      this.empSrv.getSucces('Updated Project Succesufully');
       this.projectForm.reset();
       this.router.navigate(['project-list']);
     }, error => {
-      console.log(error)
+      // console.log(error)
+      this.empSrv.getError(error.message);
     })
   }
 
