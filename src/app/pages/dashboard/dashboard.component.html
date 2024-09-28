@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Total Employees Widget -->
     <div class="col-md-4">
-      <div class="card text-white bg-primary mb-3">
+      <div class="card text-white bg-secondary mb-3">
         <div class="card-header">Total Employees</div>
         <div class="card-body">
           <h5 class="card-title">Employees</h5>
@@ -23,6 +23,7 @@
     </div>
 
     <!-- Active Employees in Projects -->
+
     <div class="col-md-4">
       <div class="card text-white bg-warning mb-3">
         <div class="card-header">Active Project Employees</div>
@@ -36,39 +37,37 @@
 
 
   <div class="row">
-    <!-- Latest Projects -->
-    <div class="col-md-6">
-      <div class="card mb-3">
-        <div class="card-header">Latest Projects</div>
+    @for(project of dashbordsList?.recentProjects; track project.id){
+    <div class="col-md-4 col-lg-4 col-12">
+      <div class="card text-white bg-dark mb-3">
+        <div class="card-header">Latest Projects </div>
         <div class="card-body">
-          @for(project of dashbordsList?.recentProjects; track project.id){
-          <div id="recentEmployees" class="list-group">
-            <span>Project Name : {{project?.projectName}} &nbsp; Start Date : {{project?.startDate | date}} </span>
-            <hr />
-          </div>
-          }
-          @empty {
-          <b class="text-center text-danger font-weight-bold"> Data is Not Found.</b>
-          }
-
+          <h5 class="card-title">Project Name : {{project?.projectName}}</h5>
+          <p class="card-text" id="activeEmployees">Start Date:{{project?.startDate | date}}</p>
         </div>
       </div>
     </div>
+    }
+    @empty {
+    <b class="text-center text-danger font-weight-bold"> Data is Not Found.</b>
+    }
+  </div>
 
-    <!-- Recently Hired Employees -->
-    <div class="col-md-6">
-      <div class="card mb-3">
-        <div class="card-header">Recently Hired Employees</div>
-        <div class="card-body">
-          @for(employes of dashbordsList?.recentEmployee; track employes.id ){
-          <div id="recentEmployees" class="list-group">
-            <span>Name : {{employes?.employeeName}} &nbsp; Mob : {{employes?.contactNo}} </span>
-          </div>
-          }
-          @empty {
-          <b class="text-center text-danger font-weight-bold"> Data is Not Found.</b>
-          }
+
+
+  <!-- Recently Hired Employees -->
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header">Recently Hired Employees</div>
+      <div class="card-body">
+        @for(employes of dashbordsList?.recentEmployee; track employes.id ){
+        <div id="recentEmployees" class="list-group">
+          <span>Name : {{employes?.employeeName}} &nbsp; Mob : {{employes?.contactNo}} </span>
         </div>
+        }
+        @empty {
+        <b class="text-center text-danger font-weight-bold"> Data is Not Found.</b>
+        }
       </div>
     </div>
   </div>
