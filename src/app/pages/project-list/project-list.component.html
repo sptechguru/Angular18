@@ -1,16 +1,19 @@
-<section class="continer">
+<br />
+<section class="container card">
 
     <div class="row">
         <div class="col-md-6 col-lg-6 col-12">
             <h2>All Project List </h2>
         </div>
         <div class="col-md-6 col-lg-6 col-12 text-end">
-            <button class="btn btn-success mt-3" routerLink="/add-project/0">Add New Project</button>
+            <button class="btn btn-success mt-3" routerLink="/add-project/0"><i class="fa fa-plus"
+                    aria-hidden="true"></i>
+                New Project</button>
         </div>
     </div>
 
     <br />
-    <table class="table  table-dark table-striped">
+    <table class="table table-success table-striped">
         <thead>
             <tr>
                 <th>S.No</th>
@@ -31,11 +34,16 @@
                 <td>{{$index +1}}</td>
                 <td>{{emp?.projectName}}</td>
                 <td>{{emp?.clientName }}</td>
-                <td>{{emp?.startDate}}</td>
+                <td>{{emp?.startDate | date}}</td>
                 <td>{{emp?.leadByEmpId}}</td>
                 <td>
-                    <button class="btn btn-success" (click)="onEdit(emp.projectId)">Edit</button>
-                    <button class="btn btn-danger mx-2" (click)="onDelete(emp.projectId)">Delete</button>
+                    <button class="btn btn-success" (click)="onEdit(emp.projectId)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-danger mx-2" (click)="onDelete(emp.projectId)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+
+                    </button>
                 </td>
             </tr>
             }

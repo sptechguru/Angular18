@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container my-4 card">
 
     <!-- Employees Tab -->
     <div class="tab-pane fade show active" id="employees" role="tabpanel">
@@ -7,7 +7,8 @@
                 <h2>Employees Crud Opertions </h2>
             </div>
             <div class="col-md-6 col-lg-6 col-12 text-end">
-                <button class="btn btn-success mt-3" (click)="isempFormVisble.set(true)">Add Employee</button>
+                <button class="btn btn-success mt-3" (click)="isempFormVisble.set(true)"><i class="fa fa-plus" aria-hidden="true"></i>
+                    Employee</button>
             </div>
         </div>
 
@@ -17,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="employeeName" class="form-label">Employee Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="employeeObj.employeeName" name="name"
+                    <input type="text" class="form-control" [(ngModel)]="employeeObj.employeeName" name="employeeName"
                         id="employeeName" placeholder="Enter employee name">
                 </div>
                 <div class="col-md-6">
@@ -88,7 +89,8 @@
             @else {
             <button type="submit" class="btn btn-warning mt-3" (click)="onUpdate()">Update Employee</button>
             }
-            <button type="submit" class="btn btn-danger mt-3 mx-3" (click)="isempFormVisble.set(false)">Close</button>
+            <button type="submit" class="btn btn-danger mt-3 mx-3" (click)="isempFormVisble.set(false)"><i class="fa fa-close" aria-hidden="true"></i>
+            </button>
         </form>
         }
 
@@ -123,8 +125,10 @@
                     <td>{{emp?.role}}</td>
                     <td>{{emp?.gender}}</td>
                     <td>
-                        <button class="btn btn-success" (click)="onEdit(emp)">Edit</button>
-                        <button class="btn btn-danger mx-2" (click)="onDelete(emp.employeeId)">Delete</button>
+                        <button class="btn btn-success" (click)="onEdit(emp)"><i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-danger mx-2" (click)="onDelete(emp.employeeId)"><i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
                     </td>
 
                 </tr>

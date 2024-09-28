@@ -13,12 +13,17 @@ export class LoginComponent {
 
   loginObj: any = {
     userName: '',
-    password: ''
+    password: '',
+    developeruser:"santosh pal",
+    user_pic:'https://avatars3.githubusercontent.com/u/58684635?s=460&amp;u=f7af97454174f4f3a0c1b2db9b79cf1206b9a424&amp;v=4',
   };
   router = inject(Router)
+  userName:any = 'Santosh';
+  pass:any = 883900;
 
   onLogin() {
-    if(this.loginObj.userName === 'admin' && this.loginObj.password === '123456') {
+    if(this.loginObj.userName == this.userName && this.loginObj.password == this.pass) {
+      localStorage.setItem('USER',JSON.stringify(this.loginObj))
       this.router.navigateByUrl('/dashboard')
     } else {
       alert('Wrong Credentials')

@@ -5,7 +5,7 @@ import { EmployesService } from '../../Services/employes.service';
 import { Employee } from '../../Model/class/Employee';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { IProject } from '../../Model/iterface/master';
+import { IProject } from '../../Model/interface/master';
 
 @Component({
   selector: 'app-project-form',

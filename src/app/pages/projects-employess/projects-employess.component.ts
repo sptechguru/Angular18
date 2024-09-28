@@ -1,57 +1,55 @@
 import { Component, inject, signal } from '@angular/core';
-import { IApiResponse, IChildDept } from '../../Model/iterface/master';
+import { IApiResponse, IChildDept, IProject, IProjectEmployee } from '../../Model/interface/master';
 import { EmployesService } from '../../Services/employes.service';
 import { Employee } from '../../Model/class/Employee';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects-employess',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe, ReactiveFormsModule, AsyncPipe],
   templateUrl: './projects-employess.component.html',
   styleUrl: './projects-employess.component.css'
 })
 export class ProjectsEmployessComponent {
 
-  empList: any = signal<any>([]);
-  parentEmpList: any = signal<any>([]);
-  childDeptEmpList: any = signal<IChildDept[]>([]);
-  isempFormVisble = signal<boolean>(false);
+  projectEmpoyeeList: any = signal<IProjectEmployee[]>([]);
   empSrv = inject(EmployesService);
   parenDeptId: number = 0;
-  employeeObj: Employee = new Employee();
+  projectempForm!: FormGroup;
+  projectList$: Observable<any[]> = new Observable<any[]>;
+  empList$: Observable<Employee[]> = new Observable<Employee[]>;
+  isbtn = signal<boolean>(true);
+
+
+
+  constructor(private fb: FormBuilder) {
+    this.projectList$ = this.empSrv.getAllProjects();
+    this.empList$ = this.empSrv.getAllEmployees();
+  }
 
   ngOnInit(): void {
-    this.loadEmployee();
-    this.loadParentDept();
-    console.log(this.employeeObj)
+    this.loadAllProjectsEmp();
+    this.intiForm();
   }
 
-  addModeBox(){
-    this.employeeObj = new Employee();
-    this.isempFormVisble.set(true);
-  }
-
-  loadParentDept() {
-    this.empSrv.getParentDepartMent().subscribe((res: IApiResponse) => {
-      console.log('parent dept', res.data);
-      this.parentEmpList.set(res.data);
-    }, error => {
-      console.log(error)
-    })
-  }
-
-  onParentDeptIdChange() {
-    console.log(this.parenDeptId)
-    this.empSrv.getChildDepartmentByParentId(this.parenDeptId).subscribe((res:IChildDept)=>{
-      console.log(res);
+  intiForm() {
+    this.projectempForm = this.fb.group({
+      empProjectId: [0],
+      projectId: [0],
+      empId: [0],
+      assignedDate: [''],
+      role: [''],
+      isActive: [false]
     })
   }
 
 
-  loadEmployee() {
-    this.empSrv.getAllEmployees().subscribe((res: Employee[]) => {
-      this.empList.set(res)
+  loadAllProjectsEmp() {
+    this.empSrv.getAllProjectEmployees().subscribe((res: IProjectEmployee[]) => {
+      this.projectEmpoyeeList.set(res)
       console.log(res);
     },
       error => {
@@ -61,44 +59,51 @@ export class ProjectsEmployessComponent {
 
 
   onSave() {
-    this.empSrv.createEmployee(this.employeeObj).subscribe((res: IApiResponse) => {
-      alert("Employee Create Succesufully");
-      this.loadEmployee();
-      this.employeeObj = new Employee();
+    const formValue = this.projectempForm.value;
+    this.empSrv.createProjectEmployee(formValue).subscribe((res: IProject) => {
+      alert("Employee Create to Project Succesufully");
+      this.projectempForm.reset();
+      this.loadAllProjectsEmp();
     },
       error => {
         console.log(error)
       })
   }
 
+
   onUpdate() {
-    this.empSrv.updateEmployees(this.employeeObj).subscribe((res) => {
-      alert("Employee Update  Succesufully");
-      this.loadEmployee();
-      this.employeeObj = new Employee();
+    const formValue = this.projectempForm.value;
+    console.log("update form values", formValue)
+    this.empSrv.updateProjectEmployee(formValue).subscribe((res) => {
+      alert("Employee Update to Project Succesufully");
+      this.loadAllProjectsEmp();
     }, error => {
       console.log(error)
     })
   }
 
 
-  onEdit(item: Employee) {
-    this.employeeObj = item;
-    console.log('Edit Form  ', this.employeeObj)
-    this.isempFormVisble.set(true);
+  onEdit(item: any) {
+    // console.log("Edit form", item);
+    this.isbtn.set(false);
+    this.projectempForm.patchValue({
+      empProjectId: item.empProjectId,
+      projectId: item.empProjectId,
+      empId: item.empId,
+      assignedDate: item.assignedDate,
+      role: item.role,
+      isActive: item.isActive
+    })
   }
-
-
 
   onDelete(id: number) {
     console.log('Employee id ', id)
     const confirmed = confirm('Are You sure Want to Delete ??');
     if (confirmed) {
-      this.empSrv.deleteEmployee(id).subscribe((res: IApiResponse) => {
-        alert("Employee Delted  Succesufully");
-        this.loadEmployee();
+      this.empSrv.deleteProjectEmployee(id).subscribe((res: IApiResponse) => {
+        alert("Employee Delted Project  Succesufully");
+        this.loadAllProjectsEmp();
       })
     }
   }
-
 }

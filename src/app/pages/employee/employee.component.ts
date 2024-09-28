@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { EmployesService } from '../../Services/employes.service';
 import { FormsModule } from '@angular/forms';
 import { Employee } from '../../Model/class/Employee';
-import { IApiResponse, IChildDept } from '../../Model/iterface/master';
+import { IApiResponse, IChildDept } from '../../Model/interface/master';
 
 @Component({
   selector: 'app-employee',

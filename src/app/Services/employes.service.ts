@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../Model/class/Employee';
-import { IApiResponse, IChildDept, IProject } from '../Model/iterface/master';
+import { IApiResponse, IChildDept, IProject, IProjectEmployee } from '../Model/interface/master';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +20,21 @@ export class EmployesService {
     return this.http.get<any>(`${this.apiBaseurlurl}GetDashboard`);
   }
 
-  getParentDepartMent() :Observable<IApiResponse> {
+  getParentDepartMent(): Observable<IApiResponse> {
     return this.http.get<IApiResponse>(`${this.apiBaseurlurl}GetParentDepartment`);
   }
 
-  getChildDepartmentByParentId(deptId:number):Observable<IChildDept> {
+  getChildDepartmentByParentId(deptId: number): Observable<IChildDept> {
     return this.http.get<IChildDept>(`${this.apiBaseurlurl}GetChildDepartmentByParentId?deptId=${deptId}`);
   }
 
-  getAllEmployees():Observable<Employee[]> {
-    return this.http.get<Employee []>(`${this.apiBaseurlurl}GetAllEmployees`);
+  getAllEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.apiBaseurlurl}GetAllEmployees`);
   }
 
-  getAllChildDepartment()  {
+  getAllChildDepartment() {
     return this.http.get<any>(`${this.apiBaseurlurl}GetAllChildDepartment`);
   }
-
-
 
 
   getEmployeeById(emid: any) {
@@ -44,8 +42,8 @@ export class EmployesService {
   }
 
 
-  getAllProjectEmployees() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetAllProjectEmployees`);
+  getAllProjectEmployees(): Observable<IProjectEmployee[]> {
+    return this.http.get<IProjectEmployee[]>(`${this.apiBaseurlurl}GetAllProjectEmployees`);
   }
 
   getProjectEmployeeID(prId: any) {
@@ -53,8 +51,8 @@ export class EmployesService {
   }
 
 
-  getAllProjects() :Observable<Employee[]> {
-    return this.http.get<Employee []>(`${this.apiBaseurlurl}GetAllProjects`);
+  getAllProjects(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.apiBaseurlurl}GetAllProjects`);
   }
 
   getProjectById(prId: any) {
@@ -92,29 +90,29 @@ export class EmployesService {
   }
 
 
-  createProject(obj: Employee) :Observable<IProject> {
+  createProject(obj: Employee): Observable<IProject> {
     return this.http.post<IProject>(`${this.apiBaseurlurl}CreateProject`, obj);
   }
 
 
-  createProjectEmployee(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}CreateProjectEmployee`, obj);
+  createProjectEmployee(obj: IProjectEmployee): Observable<IProject> {
+    return this.http.post<IProject>(`${this.apiBaseurlurl}CreateProjectEmployee`, obj);
   }
 
 
   ////////////////////// All Put Update  Methods here///////////////////////////// 
 
 
-  updateEmployees(obj:Employee) :Observable <IApiResponse>{
+  updateEmployees(obj: Employee): Observable<IApiResponse> {
     return this.http.put<any>(`${this.apiBaseurlurl}UpdateEmployee/ ${obj.employeeId}`, obj);
   }
 
-  updateProjectEmployee(id: any, obj: any) {
-    return this.http.put<any>(`${this.apiBaseurlurl}UpdateProjectEmployee ${id}`, obj);
+  updateProjectEmployee(obj: IProjectEmployee): Observable<IProjectEmployee> {
+    return this.http.put<IProjectEmployee>(this.apiBaseurlurl + "UpdateProjectEmployee/" + obj.empProjectId, obj);
   }
 
-  updateProject(obj:IProject) :Observable<IProject> {
-    return this.http.put<IProject>(this.apiBaseurlurl + "UpdateProject/" +obj.projectId ,obj);
+  updateProject(obj: IProject): Observable<IProject> {
+    return this.http.put<IProject>(this.apiBaseurlurl + "UpdateProject/" + obj.projectId, obj);
   }
 
 
@@ -132,15 +130,14 @@ export class EmployesService {
   }
 
 
-  deleteEmployee(id: number) :Observable<IApiResponse> {
+  deleteEmployee(id: number): Observable<IApiResponse> {
     return this.http.delete<any>(`${this.apiBaseurlurl}DeleteEmployee/${id}`);
   }
 
 
   deleteProjectEmployee(id: any) {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteProjectEmployee=${id}`);
+    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteProjectEmployee/${id}`);
   }
-
 
 
   deleteProject(id: any) {
