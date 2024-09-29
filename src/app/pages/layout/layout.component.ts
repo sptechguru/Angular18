@@ -11,8 +11,7 @@ import { EmployesService } from '../../Services/employes.service';
 })
 export class LayoutComponent {
   constructor() {
-    let data: any = localStorage.getItem('USER');
-    this.profile = JSON.parse(data)
+    this.profile= this.empSrv.getItem('USER');
     // console.log('profile Data ', this.profile)
   }
   router = inject(Router);
@@ -21,8 +20,8 @@ export class LayoutComponent {
 
   logOut() {
     this.empSrv.getError("LogOut..??");
-    localStorage.removeItem('USER');
-    localStorage.clear();
+    this.empSrv.removeItem('USER');
+    this.empSrv.clear();
     this.router.navigateByUrl('/')
   }
 

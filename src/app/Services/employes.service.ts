@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Employee } from '../Model/class/Employee';
 import { IApiResponse, IChildDept, IProject, IProjectEmployee } from '../Model/interface/master';
 import { ToastrService } from 'ngx-toastr';
@@ -12,18 +12,64 @@ export class EmployesService {
 
   readonly apiBaseurlurl: string = 'https://projectapi.gerasim.in/api/EmployeeManagement/';
 
-  constructor(private http: HttpClient,private toastr: ToastrService) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
+
+
+  private userDetailsBus = new BehaviorSubject<any>([]);
+  userDetails = this.userDetailsBus.asObservable();
+
+  setLoginDetails(userDetails: any) {
+    this.userDetailsBus.next(userDetails);
+  }
+
+
+  ////////////////////// Get Set Local Stroges Service ///////////////////////////// 
+
+
+  // Set item in local storage
+  setItem(key: string, value: any): void {
+    const serializedValue = JSON.stringify(value);
+    return localStorage.setItem(key, serializedValue);
+  }
+
+  // Get item from local storage
+  getItem<T>(key: string): T | null {
+    const serializedValue = localStorage.getItem(key);
+    if (serializedValue) {
+      return JSON.parse(serializedValue);
+    }
+    return null;
+  }
+
+  // Remove item from local storage
+  removeItem(key: string): void {
+    return localStorage.removeItem(key);
+  }
+
+  // Clear all local storage
+  clear(): void {
+    return localStorage.clear();
+  }
+
+  // Check if a key exists in local storage
+  hasKey(key: string): boolean {
+    return localStorage.getItem(key) !== null;
+  }
+
+
+  ////////////////////// Ngx Toaster///////////////////////////// 
+
+
+  getSucces(msg: string) {
+    return this.toastr.success(msg);
+  }
+
+  getError(msg: string) {
+    return this.toastr.error(msg);
+  }
 
 
   ////////////////////// All get Methods here///////////////////////////// 
-
-   getSucces(msg:string){
-    return this.toastr.success(msg);
-   }
-
-   getError(msg:string){
-    return this.toastr.error(msg);
-   }
 
   getDashbord() {
     return this.http.get<any>(`${this.apiBaseurlurl}GetDashboard`);
