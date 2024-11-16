@@ -1,6 +1,6 @@
 <div class="container my-4">
     <!-- Employees Tab -->
-    <h2 class="text-left font-weight-bold text-primary">Projects Employees</h2>
+    <h2 class="text-left font-weight-bold text-danger">Projects Crud Local Json Server Employees</h2>
     <!-- Employee Form -->
     <div class="row ">
         <div class="col-md-9 col-lg-9 col-12">
@@ -23,15 +23,15 @@
                     @for(emp of projectEmpoyeeList(); track $index){
                     <tr>
                         <td>{{$index +1}}</td>
-                        <td>{{emp?.projectName}}</td>
-                        <td>{{emp?.employeeName}}</td>
+                        <td>{{emp?.projectId}}</td>
+                        <td>{{emp?.empId}}</td>
                         <td>{{emp?.assignedDate | date}}</td>
                         <td>{{emp?.role}}</td>
                         <td>
                             <button class="btn btn-success btn-sm" (click)="onEdit(emp)">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                            <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(emp.projectId)">
+                            <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(emp.id)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
 
                             </button>
@@ -40,7 +40,6 @@
                     </tr>
                     }
                     @empty {
-                        <br/>
                     <div class="text-center py-3">
                         <b class="text-center text-danger font-weight-bold"> Employees Data is Not Found.</b>
                     </div>
@@ -57,25 +56,13 @@
             <form class="mb-4" [formGroup]="projectempForm">
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="projectName" class="form-label">Project Id</label>
-                        <select class="form-select" formControlName="projectId">
-                            <option selected>Select department</option>
-                            <!-- Department options -->
-                            @for(item of projectList$ |async; track $index){
-                            <option [value]="item?.projectId">{{item?.projectName}}</option>
-                            }
-                        </select>
+                        <label for="projectName" class="form-label">Project Name</label>
+                        <input type="text" class="form-control" formControlName="projectId">
                     </div>
 
                     <div class="col-md-12">
-                        <label for="clientName" class="form-label">Employee Id</label>
-                        <select class="form-select" formControlName="empId">
-                            <option selected>Select department</option>
-                            <!-- Department options -->
-                            @for(item of empList$ |async ; track $index){
-                            <option [value]="item?.employeeId">{{item?.employeeName}}</option>
-                            }
-                        </select>
+                        <label for="clientName" class="form-label">Employee Name</label>
+                        <input type="text" class="form-control" formControlName="empId">
                     </div>
 
                 </div>
@@ -92,14 +79,14 @@
 
                     <br />
                     <br />
-                    <div class="col-md-12">
+                    <!-- <div class="col-md-12">
                         <div class="form-check">
                             <input class="form-check-input py-2" type="checkbox" value="" id="flexCheckChecked">
                             <label class="form-check-label" for="flexCheckChecked">
                                 &nbsp; Role
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 @if(isbtn()){
@@ -107,7 +94,7 @@
                 }
                 @else {
                 <button (click)="onUpdate()" type="submit" class="btn btn-warning mt-3 mx-3">Update </button>
-                <button (click)="isbtn.set(true)" type="submit" class="btn btn-dark mt-3 mx-3">Back </button>
+                <button (click)="back()" type="submit" class="btn btn-dark mt-3 mx-3">Back </button>
                 }
             </form>
         </div>

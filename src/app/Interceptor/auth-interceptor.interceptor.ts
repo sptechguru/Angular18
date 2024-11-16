@@ -10,7 +10,7 @@ export class authInterceptorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const data:any = this.empSrv.getItem('USER');
     const token = data.token;
-    // console.log("token", token)
+    //console.log("token", token)
     if (token) {
       var cloneToken: any = req.clone({
         url: req.url,

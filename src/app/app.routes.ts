@@ -7,6 +7,7 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { ProjectFormComponent } from './pages/project-form/project-form.component';
 import { ProjectsEmployessComponent } from './pages/projects-employess/projects-employess.component';
 import { AuthGuard } from './Auth/auth.guard';
+import { CrudComponent } from './pages/crud/crud.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +19,13 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent
     },
+    {
+        path: 'crud',
+        component:CrudComponent,
+        title: 'Crud-Local-Server'
+
+    },
+
     {
         path: '',
         component: LayoutComponent,

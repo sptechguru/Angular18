@@ -17,11 +17,14 @@ export const appConfig: ApplicationConfig = {
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    provideHttpClient(withInterceptorsFromDi()),  // for using httpModuule & Interceptor using 
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: authInterceptorInterceptor,
-      multi: true
-    }
+    provideHttpClient(),
+    //provideHttpClient(withInterceptorsFromDi()),  // for using httpModuule & Interceptor using 
+    
+    // for using httpModuule & Interceptor using 
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: authInterceptorInterceptor,
+    //   multi: true
+    // }
   ]
 };

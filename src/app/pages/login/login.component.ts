@@ -22,7 +22,7 @@ export class LoginComponent {
 
   router = inject(Router)
   userName: any = 'Santosh';
-  pass: any = 883900;
+  pass: any = 1234;
 
   empSrv = inject(EmployesService)
 

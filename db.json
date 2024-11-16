@@ -1,0 +1,28 @@
+{
+  "Employee": [
+    {
+      "projectId": "Diffr",
+      "empId": "Santosh ",
+      "assignedDate": "2024-11-16",
+      "role": "Angular Developer",
+      "isActive": false,
+      "id": "1"
+    },
+    {
+      "projectId": "Naukari Job",
+      "empId": "Sani",
+      "assignedDate": "2024-11-16",
+      "role": "React Js",
+      "isActive": false,
+      "id": "41fd"
+    },
+    {
+      "projectId": "Gcon",
+      "empId": "Sameer",
+      "assignedDate": "2024-10-16",
+      "role": "Mean stack Developer",
+      "isActive": null,
+      "id": "89a0"
+    }
+  ]
+}
