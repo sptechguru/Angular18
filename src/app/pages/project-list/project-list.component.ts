@@ -6,11 +6,10 @@ import { IProject } from '../../Model/interface/master';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-project-list',
-  standalone: true,
-  imports: [RouterLink, DatePipe],
-  templateUrl: './project-list.component.html',
-  styleUrl: './project-list.component.css'
+    selector: 'app-project-list',
+    imports: [RouterLink, DatePipe],
+    templateUrl: './project-list.component.html',
+    styleUrl: './project-list.component.css'
 })
 export class ProjectListComponent implements OnInit {
 

@@ -8,11 +8,10 @@ import { AsyncPipe } from '@angular/common';
 import { IProject } from '../../Model/interface/master';
 
 @Component({
-  selector: 'app-project-form',
-  standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, AsyncPipe],
-  templateUrl: './project-form.component.html',
-  styleUrl: './project-form.component.css'
+    selector: 'app-project-form',
+    imports: [RouterLink, ReactiveFormsModule, AsyncPipe],
+    templateUrl: './project-form.component.html',
+    styleUrl: './project-form.component.css'
 })
 export class ProjectFormComponent implements OnInit {
 
