@@ -7,11 +7,10 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-projects-employess',
-  standalone: true,
-  imports: [FormsModule, DatePipe, ReactiveFormsModule, AsyncPipe],
-  templateUrl: './projects-employess.component.html',
-  styleUrl: './projects-employess.component.css'
+    selector: 'app-projects-employess',
+    imports: [FormsModule, DatePipe, ReactiveFormsModule, AsyncPipe],
+    templateUrl: './projects-employess.component.html',
+    styleUrl: './projects-employess.component.css'
 })
 export class ProjectsEmployessComponent {
 

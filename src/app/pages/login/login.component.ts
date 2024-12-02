@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { EmployesService } from '../../Services/employes.service';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [FormsModule],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent {
 

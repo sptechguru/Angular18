@@ -5,11 +5,10 @@ import { Employee } from '../../Model/class/Employee';
 import { IApiResponse, IChildDept } from '../../Model/interface/master';
 
 @Component({
-  selector: 'app-employee',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './employee.component.html',
-  styleUrl: './employee.component.css'
+    selector: 'app-employee',
+    imports: [FormsModule],
+    templateUrl: './employee.component.html',
+    styleUrl: './employee.component.css'
 })
 export class EmployeeComponent implements OnInit {
 
