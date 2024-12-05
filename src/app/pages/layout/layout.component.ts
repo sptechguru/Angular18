@@ -1,16 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { EmployesService } from '../../Services/employes.service';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
     selector: 'app-layout',
-    imports: [RouterOutlet, RouterLink, RouterLinkActive],
+    imports: [RouterOutlet, RouterLink],
     templateUrl: './layout.component.html',
     styleUrl: './layout.component.css'
 })
 export class LayoutComponent {
   constructor() {
-    this.profile= this.empSrv.getItem('USER');
+    this.profile= this.empSrv.getItem(environment.localStorageKey);
     // console.log('profile Data ', this.profile)
   }
   router = inject(Router);
@@ -19,7 +20,7 @@ export class LayoutComponent {
 
   logOut() {
     this.empSrv.getError("LogOut..??");
-    this.empSrv.removeItem('USER');
+    this.empSrv.removeItem(environment.localStorageKey);
     this.empSrv.clear();
     this.router.navigateByUrl('/')
   }
