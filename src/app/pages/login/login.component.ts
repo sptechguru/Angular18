@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployesService } from '../../Services/employes.service';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
     selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
   onLogin() {
     if (this.loginObj.userName == this.userName && this.loginObj.password == this.pass) {
       // localStorage.setItem('USER', JSON.stringify(this.loginObj))
-      this.empSrv.setItem('USER',this.loginObj)
+      this.empSrv.setItem(environment.localStorageKey,this.loginObj)
       this.empSrv.getSucces('User Login Succefully ??');
       this.router.navigateByUrl('/dashboard')
     } else {
