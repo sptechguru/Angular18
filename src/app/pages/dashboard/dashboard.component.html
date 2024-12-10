@@ -1,4 +1,16 @@
+@defer(hydrate on viewport) {
+<!-- <app-loader *ngIf="loader"></app-loader> -->
+
 <div class="container my-4">
+
+  <app-alert [message]="childMsg" [alertType]="'danger'"></app-alert>
+
+  <app-button [btnmessage]="'Submit'" [color]="'danger'" (onBtnClick)="method($event)"></app-button>
+
+  @if(loader){
+  <app-loader *ngIf="loader"></app-loader>
+  }
+
   <div class="row">
     <!-- Total Employees Widget -->
     <div class="col-md-4">
@@ -72,3 +84,19 @@
     </div>
   </div>
 </div>
+}
+@loading {
+
+<div class="text-center">
+  <!-- <h2 class="text-danger font-weight-bold">Loading........</h2> -->
+  <div class="spinner-grow text-warning" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+} @placeholder {
+<h2 class="text-danger font-weight-bold text-center">placeholder.....</h2>
+}
+@error {
+<p>Failed to load large component.</p>
+}

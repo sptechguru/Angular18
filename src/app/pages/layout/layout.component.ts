@@ -12,8 +12,9 @@ import { environment } from '../../../environments/environment.development';
 export class LayoutComponent {
   constructor() {
     this.profile= this.empSrv.getItem(environment.localStorageKey);
-    // console.log('profile Data ', this.profile)
+    // console.log('profile Data ', this.profile)s
   }
+  
   router = inject(Router);
   empSrv = inject(EmployesService)
   profile: any;

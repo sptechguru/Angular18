@@ -3,10 +3,11 @@ import { EmployesService } from '../../Services/employes.service';
 import { FormsModule } from '@angular/forms';
 import { Employee } from '../../Model/class/Employee';
 import { IApiResponse, IChildDept } from '../../Model/interface/master';
+import { AlertComponent } from '../../Core/alert/alert.component';
 
 @Component({
     selector: 'app-employee',
-    imports: [FormsModule],
+    imports: [FormsModule,AlertComponent],
     templateUrl: './employee.component.html',
     styleUrl: './employee.component.css'
 })
@@ -19,6 +20,7 @@ export class EmployeeComponent implements OnInit {
   empSrv = inject(EmployesService);
   parenDeptId: number = 0;
   employeeObj: Employee = new Employee();
+
 
   ngOnInit(): void {
     this.loadEmployee();
@@ -107,5 +109,4 @@ export class EmployeeComponent implements OnInit {
       })
     }
   }
-
 }
