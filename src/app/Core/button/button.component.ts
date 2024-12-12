@@ -12,9 +12,10 @@ export class ButtonComponent {
   @Input() color: string = '';
   @Output() onBtnClick = new EventEmitter<any>();
 
-  onClick() {
-    debugger;
-    // anything data transfer in like array & objects
+  onClick(item:any) {
+    // debugger;
+    // this.onBtnClick.emit(item);
     this.onBtnClick.emit('Child to data transfer in Parent Componets');
+
   }
 }

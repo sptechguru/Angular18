@@ -1,6 +1,5 @@
 <br />
 <section class="container card">
-
     <div class="row">
         <div class="col-md-6 col-lg-6 col-12">
             <h2>All Project List </h2>
@@ -13,7 +12,11 @@
     </div>
 
     <br />
- <div class="table-responsive">
+    <app-table [themeClass]="'table-warning table-striped'" [headTitleArr]="headTittle" [gridResdata]="empProjectList"
+        (onEdit)="onEdit($event)" (onDelete)="onDelete($event)"></app-table>
+
+
+    <!-- <div class="table-responsive">
     <table class="table table-success table-striped">
         <thead>
             <tr>
@@ -26,10 +29,6 @@
             </tr>
         </thead>
         <tbody>
-
-
-            <!-- Data rows go here -->
-
             @for(emp of empProjectList; track $index){
             <tr>
                 <td>{{$index +1}}</td>
@@ -56,5 +55,7 @@
 
         </tbody>
     </table>
-</div>
+</div> -->
+
+
 </section>

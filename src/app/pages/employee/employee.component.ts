@@ -4,16 +4,34 @@ import { FormsModule } from '@angular/forms';
 import { Employee } from '../../Model/class/Employee';
 import { IApiResponse, IChildDept } from '../../Model/interface/master';
 import { AlertComponent } from '../../Core/alert/alert.component';
+import { TableComponent } from "../../Core/table/table.component";
 
 @Component({
     selector: 'app-employee',
-    imports: [FormsModule,AlertComponent],
+    imports: [FormsModule, AlertComponent, TableComponent],
     templateUrl: './employee.component.html',
     styleUrl: './employee.component.css'
 })
 export class EmployeeComponent implements OnInit {
+  
+  // headTittle:any = ['S.No','Name', 'Contact No','Email', 'Department' ,'Role', 'Gender','Action']
+  
+  headTittle = [
+    // { key: 'S.N0', header: 'S.N0' },
+    { key: 'employeeId', header: 'EId' },
+    { key: 'employeeName', header: 'Name' },
+    { key: 'contactNo', header: 'Contact No' },
+    { key: 'deptId', header: 'Department' },
+    { key: 'gender', header: 'Gender' },
+    { key: 'role', header: 'Role' },
+    { key: 'emailId', header: 'Email' },
+    { key: 'action', header: 'Action' },
+
+  ]
 
   empList: any = signal<any>([]);
+  empList2: any = [];
+
   parentEmpList: any = signal<any>([]);
   childDeptEmpList: any = signal<IChildDept[]>([]);
   isempFormVisble = signal<boolean>(false);
@@ -55,7 +73,8 @@ export class EmployeeComponent implements OnInit {
   loadEmployee() {
     this.empSrv.getAllEmployees().subscribe((res: Employee[]) => {
       this.empList.set(res)
-      // console.log(res);
+       this.empList2 = res;
+      console.log(this.empList2);
     },
       error => {
         // console.log(error)
@@ -98,11 +117,11 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  onDelete(id: number) {
-    console.log('Employee id ', id)
+  onDelete(item: any) {
+    console.log('Employee id ', item.employeeId)
     const confirmed = confirm('Are You sure Want to Delete ??');
     if (confirmed) {
-      this.empSrv.deleteEmployee(id).subscribe((res: IApiResponse) => {
+      this.empSrv.deleteEmployee(item.employeeId).subscribe((res: IApiResponse) => {
         // alert("Employee Delted  Succesufully");
         this.empSrv.getError('Employee Delted  Succesufully');
         this.loadEmployee();
