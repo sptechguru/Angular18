@@ -1,0 +1,48 @@
+<div class="seacrh_box text-center" *ngIf="searchBox">
+    <input class="form-control" [(ngModel)]="seachTerm" (ngModelChange)="applyFilter($event)" type="text"
+        placeholder="Seacrh Data…">
+</div>
+
+<div class="table-responsive py-3">
+    <table [ngClass]="themeClass" class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>S.No</th>
+                <th *ngFor="let head of headTitleArr" scope="col">{{head.header}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of filterdData; let i = index">
+                <td>{{i+1}}</td>
+                <td *ngFor="let column of headTitleArr">
+                    <div *ngIf="column.header == 'Action'">
+                        <button class="btn btn-success" (click)="editRecord(row)"><i class="fa fa-pencil"
+                                aria-hidden="true"></i></button>
+                        <button class="btn btn-danger mx-2" (click)="deleteRecord(row)"><i class="fa fa-trash"
+                                aria-hidden="true"></i></button>
+                    </div>
+                    <div *ngIf="row !== 'Action'">
+                        {{ row[column.key] }}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+      <!-- Pagination Controls -->
+  <nav *ngIf="false">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="previousPage()">Previous</button>
+      </li>
+      <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="currentPage === page">
+        <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="nextPage()">Next</button>
+      </li>
+    </ul>
+  </nav>
+</div>
+
