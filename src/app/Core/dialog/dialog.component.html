@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ data.title ?  data.title : 'Are You Sure ?'  }}</h2>
+<mat-dialog-content class="mat-typography">
+
+  {{ data.body ?  data.body : 'Do you Want to take this Action' }}
+
+  <h3>What is Angular?</h3>
+
+ 
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

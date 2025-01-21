@@ -26,43 +26,66 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-
 ## For Setup By Default Port Number Changes
 
 projects:{
-    "serve": {
-          "options": {
-            "port": 4209
-          },
-        "builder": "@angular-devkit/build-angular:dev-server",
-        "configurations": {
-            "production": {
-              "buildTarget": "angular_18_admin_panel_sidebar:build:production"
-            },
-        "development": {
-              "buildTarget": "angular_18_admin_panel_sidebar:build:development"
-            }
-          },
-        "defaultConfiguration": "development"
-        },
-   }
+"serve": {
+"options": {
+"port": 4209
+},
+"builder": "@angular-devkit/build-angular:dev-server",
+"configurations": {
+"production": {
+"buildTarget": "angular_18_admin_panel_sidebar:build:production"
+},
+"development": {
+"buildTarget": "angular_18_admin_panel_sidebar:build:development"
+}
+},
+"defaultConfiguration": "development"
+},
+}
 
-
-
-## GITHUB Deployed  
+## GITHUB Deployed
 
 ## npm install ghPages
 
-1) Url for => https:// {{profile Name }}. github.io/{{repo Name}}
+1. Url for => https:// {{profile Name }}. github.io/{{repo Name}}
 
-2)  ng build --base-href "https://sptechguru.github.io/projects/"
+2. ng build --base-href "https://sptechguru.github.io/projects/"
 
-3)  npx angular-cli-ghPages --dir=dist/projectS/browser
+3. npx angular-cli-ghPages --dir=dist/projectS/browser
 
-4)  this cmd will create a ghpages branch your repo an publish code also Now in Github do following setup.
+4. this cmd will create a ghpages branch your repo an publish code also Now in Github do following setup.
 
 ## GO TO SETTING GITHUB PAGES
 
-5) Select Main Branch and Save wait for some time Then change to ghPages & Save run below cmd your project 
+5. Select Main Branch and Save wait for some time Then change to ghPages & Save run below cmd your project
 
-6) npx angular-cli-ghPages --dir=dist/projects/browser 
+6. npx angular-cli-ghPages --dir=dist/projects/browser
+
+Angular 19 All New Featues for changes
+
+1. Resources Api
+2. Deferable views
+3. By default in a standalone components
+4. Components for using in @componets decorator are used inside imports components.
+5. All old Directive for using like *ngIf & *ngFor @components decorator for imports in @angular/common
+   & for using Common Module.
+6. for Current version directives controls flow Statements for using @if, & @for
+7. ngClass & ngStyle for Attribute Directives
+8. Linked Signals for using Computions
+9. Routing for used in Default Route in for using method dynamic routes for using function only 18 for using string value.& Angular 19 using fuction.
+Ex: { path:'' ,redirectTo = () => { For Custom Logic here}, pathMatch:'full'}
+10. Reactive Forms 
+11. For Api calling in configrationn of app.config provideHttpClient(withInterceptorsFromDi) for parmeter passing a intrceptor used in 
+12. inject()  for Ex. Service Used empSrv = inject(EmployesService).
+
+<!-- ----------------------------------------------------------------------------- -->
+
+Core Componets in  Resusable alert components for using Parent to child
+
+Alert Components 
+
+
+

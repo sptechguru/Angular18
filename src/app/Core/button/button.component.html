@@ -1,0 +1,10 @@
+<button type="button" class="btn" 
+ [ngClass]="{'btn-danger': color =='danger', 
+'btn-warning':color =='Warning',
+'btn-primary':color =='primary',
+'btn-secondary':color =='secondary',
+'btn-light':color =='light',
+'btn-dark':color =='dark',
+'btn-success':color =='Success'}"
+(click)="onClick($event)">
+{{btnmessage}}</button>
