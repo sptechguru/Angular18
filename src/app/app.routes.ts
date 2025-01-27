@@ -7,16 +7,21 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { ProjectFormComponent } from './pages/project-form/project-form.component';
 import { ProjectsEmployessComponent } from './pages/projects-employess/projects-employess.component';
 import { AuthGuard } from './Auth/auth.guard';
+import { UnitTestingComponent } from './pages/unit-testing/unit-testing.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    },
+    // {
+    //     path: '',
+    //     redirectTo: 'login',
+    //     pathMatch: 'full'
+    // },
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'test',
+        component: UnitTestingComponent
     },
     {
         path: '',

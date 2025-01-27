@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { EmployesService } from '../../Services/employes.service';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-layout',
@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment.development';
 export class LayoutComponent {
   constructor() {
     this.profile= this.empSrv.getItem(environment.localStorageKey);
-    // console.log('profile Data ', this.profile)s
+    // console.log('profile Data ', this.profile)
   }
   
   router = inject(Router);
