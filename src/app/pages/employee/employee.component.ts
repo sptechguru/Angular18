@@ -70,6 +70,7 @@ export class EmployeeComponent implements OnInit {
   }
 
 
+
   loadEmployee() {
     this.empSrv.getAllEmployees().subscribe((res: Employee[]) => {
       this.empList.set(res)

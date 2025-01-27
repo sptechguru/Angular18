@@ -24,6 +24,6 @@ describe('UnitTestingComponent', () => {
     component.num1 = 5;
     component.num2 = 4;
     component.getSum()
-    expect(component.result).toBe(999)
+    expect(component.result).toBe(9)
   })
 });
