@@ -4,17 +4,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Employee } from '../Model/class/Employee';
 import { IApiResponse, IChildDept, IProject, IProjectEmployee } from '../Model/interface/master';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../environments/environment';
+import CryptoJS from 'crypto-js';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployesService {
 
-  readonly apiBaseurlurl: string = 'https://projectapi.gerasim.in/api/EmployeeManagement/';
+  readonly apiBaseUrl = environment.apiBaseUrl;
+  readonly secretKey = environment.secretKey // Use an environment variable in a real project
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
 
-
+  
   private userDetailsBus = new BehaviorSubject<any>([]);
   userDetails = this.userDetailsBus.asObservable();
 
@@ -22,23 +26,33 @@ export class EmployesService {
     this.userDetailsBus.next(userDetails);
   }
 
-
   ////////////////////// Get Set Local Stroges Service ///////////////////////////// 
-
 
   // Set item in local storage
   setItem(key: string, value: any): void {
     const serializedValue = JSON.stringify(value);
-    return localStorage.setItem(key, serializedValue);
+    // console.log("Localstorage ed=nction values", serializedValue)
+    return localStorage.setItem(key, this.encryptData(serializedValue));
   }
 
   // Get item from local storage
   getItem<T>(key: string): T | null {
     const serializedValue = localStorage.getItem(key);
     if (serializedValue) {
-      return JSON.parse(serializedValue);
+      return JSON.parse(this.decryptData(serializedValue));
     }
     return null;
+  }
+
+   // Encrption & Descrption for using crptojs 
+
+   encryptData(data: string): string {
+    return CryptoJS.AES.encrypt(data, this.secretKey).toString();
+  }
+
+  decryptData(encryptedData: string): string {
+    const bytes = CryptoJS.AES.decrypt(encryptedData, this.secretKey);
+    return bytes.toString(CryptoJS.enc.Utf8);
   }
 
   // Remove item from local storage
@@ -72,46 +86,46 @@ export class EmployesService {
   ////////////////////// All get Methods here///////////////////////////// 
 
   getDashbord() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetDashboard`);
+    return this.http.get<any>(`${this.apiBaseUrl}GetDashboard`);
   }
 
   getParentDepartMent(): Observable<IApiResponse> {
-    return this.http.get<IApiResponse>(`${this.apiBaseurlurl}GetParentDepartment`);
+    return this.http.get<IApiResponse>(`${this.apiBaseUrl}GetParentDepartment`);
   }
 
   getChildDepartmentByParentId(deptId: number): Observable<IChildDept> {
-    return this.http.get<IChildDept>(`${this.apiBaseurlurl}GetChildDepartmentByParentId?deptId=${deptId}`);
+    return this.http.get<IChildDept>(`${this.apiBaseUrl}GetChildDepartmentByParentId?deptId=${deptId}`);
   }
 
   getAllEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.apiBaseurlurl}GetAllEmployees`);
+    return this.http.get<Employee[]>(`${this.apiBaseUrl}GetAllEmployees`);
   }
 
   getAllChildDepartment() {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetAllChildDepartment`);
+    return this.http.get<any>(`${this.apiBaseUrl}GetAllChildDepartment`);
   }
 
 
   getEmployeeById(emid: any) {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetAllEmployee${emid}`);
+    return this.http.get<any>(`${this.apiBaseUrl}GetAllEmployee${emid}`);
   }
 
 
   getAllProjectEmployees(): Observable<IProjectEmployee[]> {
-    return this.http.get<IProjectEmployee[]>(`${this.apiBaseurlurl}GetAllProjectEmployees`);
+    return this.http.get<IProjectEmployee[]>(`${this.apiBaseUrl}GetAllProjectEmployees`);
   }
 
   getProjectEmployeeID(prId: any) {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetProjectEmployee ${prId}`);
+    return this.http.get<any>(`${this.apiBaseUrl}GetProjectEmployee ${prId}`);
   }
 
 
   getAllProjects(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.apiBaseurlurl}GetAllProjects`);
+    return this.http.get<Employee[]>(`${this.apiBaseUrl}GetAllProjects`);
   }
 
   getProjectById(prId: any) {
-    return this.http.get<any>(`${this.apiBaseurlurl}GetProject/ ${prId}`);
+    return this.http.get<any>(`${this.apiBaseUrl}GetProject/ ${prId}`);
   }
 
 
@@ -119,39 +133,39 @@ export class EmployesService {
 
 
   addNewDepartment(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}AddNewDepartment`, obj);
+    return this.http.post<any>(`${this.apiBaseUrl}AddNewDepartment`, obj);
   }
 
   addBulkDepartment(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}AddBulkDepartment`, obj);
+    return this.http.post<any>(`${this.apiBaseUrl}AddBulkDepartment`, obj);
   }
 
   updateDepartment(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}UpdateDepartment`, obj);
+    return this.http.post<any>(`${this.apiBaseUrl}UpdateDepartment`, obj);
   }
 
   addChildDepartment(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}AddChildDepartment`, obj);
+    return this.http.post<any>(`${this.apiBaseUrl}AddChildDepartment`, obj);
   }
 
 
   updateChildDepartment(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}UpdateChildDepartment`, obj);
+    return this.http.post<any>(`${this.apiBaseUrl}UpdateChildDepartment`, obj);
   }
 
 
   createEmployee(obj: any) {
-    return this.http.post<any>(`${this.apiBaseurlurl}CreateEmployee`, obj);
+    return this.http.post<any>(`${this.apiBaseUrl}CreateEmployee`, obj);
   }
 
 
   createProject(obj: Employee): Observable<IProject> {
-    return this.http.post<IProject>(`${this.apiBaseurlurl}CreateProject`, obj);
+    return this.http.post<IProject>(`${this.apiBaseUrl}CreateProject`, obj);
   }
 
 
   createProjectEmployee(obj: IProjectEmployee): Observable<IProject> {
-    return this.http.post<IProject>(`${this.apiBaseurlurl}CreateProjectEmployee`, obj);
+    return this.http.post<IProject>(`${this.apiBaseUrl}CreateProjectEmployee`, obj);
   }
 
 
@@ -159,15 +173,15 @@ export class EmployesService {
 
 
   updateEmployees(obj: Employee): Observable<IApiResponse> {
-    return this.http.put<any>(`${this.apiBaseurlurl}UpdateEmployee/ ${obj.employeeId}`, obj);
+    return this.http.put<any>(`${this.apiBaseUrl}UpdateEmployee/ ${obj.employeeId}`, obj);
   }
 
   updateProjectEmployee(obj: IProjectEmployee): Observable<IProjectEmployee> {
-    return this.http.put<IProjectEmployee>(this.apiBaseurlurl + "UpdateProjectEmployee/" + obj.empProjectId, obj);
+    return this.http.put<IProjectEmployee>(this.apiBaseUrl + "UpdateProjectEmployee/" + obj.empProjectId, obj);
   }
 
   updateProject(obj: IProject): Observable<IProject> {
-    return this.http.put<IProject>(this.apiBaseurlurl + "UpdateProject/" + obj.projectId, obj);
+    return this.http.put<IProject>(this.apiBaseUrl + "UpdateProject/" + obj.projectId, obj);
   }
 
 
@@ -176,27 +190,27 @@ export class EmployesService {
 
 
   deletedepartmentBydepartmentId(id: any) {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeletedepartmentBydepartmentId?departmentId=${id}`);
+    return this.http.delete<any>(`${this.apiBaseUrl}DeletedepartmentBydepartmentId?departmentId=${id}`);
   }
 
 
   deleteChildDeptById(id: any) {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteChildDeptById?childDeptId=${id}`);
+    return this.http.delete<any>(`${this.apiBaseUrl}DeleteChildDeptById?childDeptId=${id}`);
   }
 
 
   deleteEmployee(id: number): Observable<IApiResponse> {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteEmployee/${id}`);
+    return this.http.delete<any>(`${this.apiBaseUrl}DeleteEmployee/${id}`);
   }
 
 
   deleteProjectEmployee(id: any) {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteProjectEmployee/${id}`);
+    return this.http.delete<any>(`${this.apiBaseUrl}DeleteProjectEmployee/${id}`);
   }
 
 
   deleteProject(id: any) {
-    return this.http.delete<any>(`${this.apiBaseurlurl}DeleteProject=${id}`);
+    return this.http.delete<any>(`${this.apiBaseUrl}DeleteProject=${id}`);
   }
 
 }

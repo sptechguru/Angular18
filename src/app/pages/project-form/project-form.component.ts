@@ -6,13 +6,13 @@ import { Employee } from '../../Model/class/Employee';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { IProject } from '../../Model/interface/master';
+import { AlertComponent } from '../../Core/alert/alert.component';
 
 @Component({
-  selector: 'app-project-form',
-  standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, AsyncPipe],
-  templateUrl: './project-form.component.html',
-  styleUrl: './project-form.component.css'
+    selector: 'app-project-form',
+    imports: [RouterLink, ReactiveFormsModule, AsyncPipe,AlertComponent],
+    templateUrl: './project-form.component.html',
+    styleUrl: './project-form.component.css'
 })
 export class ProjectFormComponent implements OnInit {
 

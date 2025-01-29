@@ -4,19 +4,30 @@ import { Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { IProject } from '../../Model/interface/master';
 import { DatePipe } from '@angular/common';
+import { TableComponent } from '../../Core/table/table.component';
 
 @Component({
-  selector: 'app-project-list',
-  standalone: true,
-  imports: [RouterLink, DatePipe],
-  templateUrl: './project-list.component.html',
-  styleUrl: './project-list.component.css'
+    selector: 'app-project-list',
+    imports: [RouterLink,TableComponent],
+    templateUrl: './project-list.component.html',
+    styleUrl: './project-list.component.css'
 })
 export class ProjectListComponent implements OnInit {
 
   emPSrv = inject(EmployesService);
   $ProjectList: any = new Observable();
   router = inject(Router);
+  headTittle = [
+    { key: 'projectId', header: 'ProJectId' },
+    { key: 'projectName', header: 'Project Name' },
+    { key: 'clientName', header: 'Client Name' },
+    { key: 'contactPerson', header: 'Lead By Employee' },
+    // { key: 'gender', header: 'Gender' },
+    { key: 'contactNo', header: 'Contact No' },
+    { key: 'emailId', header: 'Email' },
+    { key: 'action', header: 'Action' },
+
+  ]
 
   empProjectList: IProject [] = [];
 
@@ -36,16 +47,16 @@ export class ProjectListComponent implements OnInit {
   }
 
   onEdit(prid: any) {
-   this.router.navigate(['add-project',prid]);
+   this.router.navigate(['add-project',prid.projectId]);
   }
 
 
  
-  onDelete(id: number) {
+  onDelete(id: any) {
     console.log('Employee id ', id)
     const confirmed = confirm('Are You sure Want to Delete ??');
     if (confirmed) {
-      this.emPSrv.deleteProject(id).subscribe((res:any) => {
+      this.emPSrv.deleteProject(id.projectId).subscribe((res:any) => {
         // alert("Employee Delted  Succesufully");
          this.emPSrv.getError("Employee Delted  Succesufully");
         this.lodProjectList();

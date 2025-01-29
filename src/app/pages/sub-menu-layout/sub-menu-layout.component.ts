@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-sub-menu-layout',
-  standalone: true,
-  imports: [RouterOutlet,RouterLink],
-  templateUrl: './sub-menu-layout.component.html',
-  styleUrl: './sub-menu-layout.component.css'
+    selector: 'app-sub-menu-layout',
+    imports: [RouterOutlet, RouterLink],
+    templateUrl: './sub-menu-layout.component.html',
+    styleUrl: './sub-menu-layout.component.css'
 })
 export class SubMenuLayoutComponent {
   
