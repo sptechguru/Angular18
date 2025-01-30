@@ -1,9 +1,14 @@
 @defer(hydrate on viewport) {
 <!-- <app-loader *ngIf="loader"></app-loader> -->
+
+<p appHighlight>Hover over this text to see the effect.</p>
+
+
 <app-button [btnmessage]="'Modal Box'" [color]="'danger'" (onBtnClick)="method($event)"></app-button>
 
 <div class="container my-4">
   <app-alert [message]="childMsg" [alertType]="'danger'"></app-alert>
+
 
   @if(loader){
   <app-loader *ngIf="loader"></app-loader>

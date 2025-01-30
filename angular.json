@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular_18_admin_panel_sidebar": {
+    "ANGULAR_18_FEA": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular_18_admin_panel_sidebar",
+            "outputPath": "dist/ANGULAR_18_FEA",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular_18_admin_panel_sidebar:build:production"
+              "buildTarget": "ANGULAR_18_FEA:build:production"
             },
             "development": {
-              "buildTarget": "angular_18_admin_panel_sidebar:build:development"
+              "buildTarget": "ANGULAR_18_FEA:build:development"
             }
           },
           "defaultConfiguration": "development"

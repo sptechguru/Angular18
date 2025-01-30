@@ -12,9 +12,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let row of filterdData; let i = index">
-                <td>{{i+1}}</td>
-                <td *ngFor="let column of headTitleArr">
+            <tr *ngFor="let row of filterdData; let i = index; let isOdd = odd;let isEven = even">
+                <td  [ngClass]="{ 'odd-row': isOdd, 'even-row': isEven }">{{i+1}}</td>
+                <td *ngFor="let column of headTitleArr" 
+                [ngClass]="{ 'odd-row': isOdd, 'even-row': isEven }">
                     <div *ngIf="column.header == 'Action'">
                         <button class="btn btn-success" (click)="editRecord(row)"><i class="fa fa-pencil"
                                 aria-hidden="true"></i></button>

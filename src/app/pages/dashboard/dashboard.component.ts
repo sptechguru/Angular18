@@ -7,12 +7,17 @@ import { ButtonComponent } from "../../Core/button/button.component";
 import { DialogComponent } from '../../Core/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeComponent } from '../employee/employee.component';
+import { HighLightDirective } from '../../directive/high-light.directive';
 
 @Component({
     selector: 'app-dashboard',
-    imports: [DatePipe, CommonModule, LoaderComponent, 
+    imports: [
+      DatePipe, 
+      CommonModule, LoaderComponent, 
       NgIf, AlertComponent, 
-      ButtonComponent],
+      ButtonComponent
+      // HighLightDirective
+    ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'
 })
