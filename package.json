@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4209",
-    "build": "ng build --port 4209",
+    "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "jest --verbose",
     "test:coverage": "jest --coverage",

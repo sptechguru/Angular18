@@ -4,6 +4,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "strict": true,
+    "moduleResolution": "Node",
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -16,7 +17,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "useDefineForClassFields": false,
-    "module": "commonjs",
+    "module": "ES2022",
     "lib": [
       "ES2022",
       "dom"

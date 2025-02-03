@@ -1,4 +1,4 @@
-# Angular18AdminPanelSidebar
+# Angular 18 Fea
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.0.
 
@@ -45,6 +45,19 @@ projects:{
 "defaultConfiguration": "development"
 },
 }
+
+
+
+# FROM node:alpine
+# WORKDIR /usr/src/app
+
+# COPY . /usr/src/app
+
+# RUN npm install -g @angular/cli
+
+# RUN npm install
+
+# CMD ["ng", "serve", "--host", "0.0.0.0"]
 
 ## GITHUB Deployed
 
