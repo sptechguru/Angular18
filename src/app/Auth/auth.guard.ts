@@ -1,6 +1,6 @@
 
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { environment } from '../../environments/environment.development';
 
@@ -8,8 +8,7 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-
-  constructor(private router: Router) { }
+  router = inject(Router);
 
   canActivate(): boolean {
     if (localStorage.getItem(environment.localStorageKey)) {

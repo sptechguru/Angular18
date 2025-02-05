@@ -17,7 +17,6 @@ export class EmployesService {
   readonly secretKey = environment.secretKey // Use an environment variable in a real project
 
   constructor(private http: HttpClient, private toastr: ToastrService) { }
-
   
   private userDetailsBus = new BehaviorSubject<any>([]);
   userDetails = this.userDetailsBus.asObservable();

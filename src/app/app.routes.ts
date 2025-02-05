@@ -1,3 +1,4 @@
+import { RegisterComponent } from './pages/register/register.component';
 import { ProjectListComponent } from './pages/project-list/project-list.component';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -8,20 +9,29 @@ import { ProjectFormComponent } from './pages/project-form/project-form.componen
 import { ProjectsEmployessComponent } from './pages/projects-employess/projects-employess.component';
 import { AuthGuard } from './Auth/auth.guard';
 import { UnitTestingComponent } from './pages/unit-testing/unit-testing.component';
+import { ResourceApiComponent } from './pages/resource-api/resource-api.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     redirectTo: 'login',
-    //     pathMatch: 'full'
-    // },
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
     {
         path: 'login',
         component: LoginComponent
     },
     {
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
         path: 'test',
         component: UnitTestingComponent
+    },
+    {
+        path: 'resource',
+        component: ResourceApiComponent
     },
     {
         path: '',

@@ -28,7 +28,6 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginObj.userName == this.userName && this.loginObj.password == this.pass) {
-      // localStorage.setItem('USER', JSON.stringify(this.loginObj))
       this.empSrv.setItem(environment.localStorageKey,this.loginObj)
       this.empSrv.getSucces('User Login Succefully ??');
       this.router.navigateByUrl('/dashboard')
