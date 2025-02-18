@@ -31,7 +31,6 @@ export class EmployesService {
   // Set item in local storage
   setItem(key: string, value: any): void {
     const serializedValue = JSON.stringify(value);
-    // console.log("Localstorage ed=nction values", serializedValue)
     return localStorage.setItem(key, this.encryptData(serializedValue));
   }
 

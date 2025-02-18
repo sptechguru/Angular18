@@ -16,7 +16,7 @@ img{
 }
 
 .container{
-    width: 400px;
+    width: 450px;
     color: #fff;
     padding: 30px 40px;
     border-radius: 15px;
@@ -65,8 +65,9 @@ img{
 }
 
 .remember a:hover{
-    /* border-bottom: 2px solid #fff; */
-    color: #000dff;
+    border-bottom: 2px solid #fff;
+    color: #ea2bc3;
+    cursor: pointer;
 }
 
 .btn{
@@ -105,5 +106,6 @@ img{
 }
 
 .register p a:hover{
-    color: #000dff;
+    color: #ea2bc3;
+    cursor: pointer;
 }

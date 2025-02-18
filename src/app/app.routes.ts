@@ -10,11 +10,11 @@ import { AuthGuard } from './Auth/auth.guard';
 import { UnitTestingComponent } from './pages/unit-testing/unit-testing.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     redirectTo: 'login',
-    //     pathMatch: 'full'
-    // },
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
     {
         path: 'login',
         component: LoginComponent
