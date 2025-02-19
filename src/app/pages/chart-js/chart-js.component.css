@@ -1,0 +1,22 @@
+
+  .chart-buttons button {
+    text-transform: capitalize; /* Capitalizes the first letter of each word */
+    background-color: #343a40; /* Dark background */
+    color: white; /* White text */
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    margin-left: 1rem;
+  }
+  
+  .chart-buttons button:hover {
+    background-color: #495057; /* Darker shade on hover */
+  }
+  
+  .chart-buttons button:active {
+    transform: scale(0.95); /* Slight shrink effect on click */
+  }
+  

@@ -8,6 +8,7 @@ import { ProjectFormComponent } from './pages/project-form/project-form.componen
 import { ProjectsEmployessComponent } from './pages/projects-employess/projects-employess.component';
 import { AuthGuard } from './Auth/auth.guard';
 import { UnitTestingComponent } from './pages/unit-testing/unit-testing.component';
+import { ChartJsComponent } from './pages/chart-js/chart-js.component';
 
 export const routes: Routes = [
     {
@@ -22,6 +23,10 @@ export const routes: Routes = [
     {
         path: 'test',
         component: UnitTestingComponent
+    },
+    {
+        path: 'chart',
+        component: ChartJsComponent
     },
     {
         path: '',
