@@ -129,6 +129,7 @@ export class DounutChartComponent implements OnInit {
   ];
   
   tableColumns = ['Location', 'Critical Severity', 'High Severity'];
+
   
   onSortChange(event: { column: string; direction: 'asc' | 'desc' }) {
     console.log('Sorted Column:', event.column);
