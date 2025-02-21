@@ -9,6 +9,7 @@ import { ProjectsEmployessComponent } from './pages/projects-employess/projects-
 import { AuthGuard } from './Auth/auth.guard';
 import { UnitTestingComponent } from './pages/unit-testing/unit-testing.component';
 import { ChartJsComponent } from './pages/chart-js/chart-js.component';
+import { DounutChartComponent } from './pages/dounut-chart/dounut-chart.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,12 @@ export const routes: Routes = [
         path: 'chart',
         component: ChartJsComponent
     },
+
+    {
+        path: 'high-chart',
+        component: DounutChartComponent
+    },
+    
     {
         path: '',
         component: LayoutComponent,

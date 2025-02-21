@@ -5,7 +5,6 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 
-
 @Component({
   selector: 'app-chart-js',
   imports: [FormsModule, CommonModule],
