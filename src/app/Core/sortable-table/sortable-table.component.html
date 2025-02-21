@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>S.No</th> <!-- Index column -->
+                <th class="text-center" *ngFor="let column of displayedColumns" (click)="sortTable(column)">
+                    {{ column }}
+                    <span *ngIf="sortColumn === column">
+                        {{ sortDirection === 'asc' ? '⬆️' : '⬇️' }}
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of sortedData; let i = index">
+                <td>{{i+1}}</td>
+                <td *ngFor="let column of displayedColumns">{{ row[column] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

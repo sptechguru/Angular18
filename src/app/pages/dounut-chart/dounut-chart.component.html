@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <h2 class="font-weight-bold text-dark mb-3">Donut Chart & Dynamic table </h2>
+
+  <div class="card mt-4">
+  <div class="row">
+      <div class="col-md-6 col-lg-6 col-12">
+        <app-sortable-table [dataResult]="deviceTableList" 
+        [displayedColumns]="tableColumns"
+        (sortChanged)="onSortChange($event)">
+      </app-sortable-table>
+      </div>
+
+      <div class="col-md-6 col-lg-6 col-12">
+        <app-sortable-table [dataResult]="deviceTableList" 
+        [displayedColumns]="['Location','Critical Severity','High Severity']"
+        (sortChanged)="onSortChange($event)">
+      </app-sortable-table>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-md-4 col-lg-4 col-12">
+      <div class="card mb-3">
+        <!-- <div class="card-header" style="text-transform: capitalize; font-size: 1.5rem;">Select Chart Type</div> -->
+        <div class="card-body">
+          <div style="display: block;">
+            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions2" class="chart-box">
+            </highcharts-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-4 col-12">
+      <div class="card mb-3">
+        <!-- <div class="card-header" style="text-transform: capitalize; font-size: 1.5rem;">Select Chart Type</div> -->
+        <div class="card-body">
+          <div style="display: block;">
+            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" class="chart-box">
+            </highcharts-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-4 col-12">
+      <div class="card mb-3">
+        <!-- <div class="card-header" style="text-transform: capitalize; font-size: 1.5rem;">Select Chart Type</div> -->
+        <div class="card-body">
+          <div style="display: block;">
+            <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions3" class="chart-box">
+            </highcharts-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
